@@ -75,7 +75,7 @@ Tecnologias:
 
 ### API Response
 
-Todos os endpoints retornam um padrão único de resposta:
+Todos os endpoints retornam um padrão de resposta:
 
 ```json
 {
@@ -110,7 +110,7 @@ Campos:
 | message | String  | Mensagem informativa   |
 | data    | T       | Dados retornados       |
 
-**Decisão:** padronização facilita consumo no frontend e tratamento global de erros.
+**Decisão:** Padronização facilita consumo no frontend e tratamento global de erros.
 
 ---
 
