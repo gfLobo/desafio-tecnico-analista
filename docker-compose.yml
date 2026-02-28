@@ -1,0 +1,56 @@
+services:
+  gestaopro-frontend:
+    image: node:20-alpine
+    container_name: gestaopro_frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "8081:8080"
+    command: sh -c "npm install && npm run dev -- --host"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - gestaopro-backend
+  
+  gestaopro-backend:
+    container_name: gestaopro_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//gestaopro-db:1521/XEPDB1
+      SPRING_DATASOURCE_USERNAME: sergipetec
+      SPRING_DATASOURCE_PASSWORD: sergipetec
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.OracleDialect
+      TZ: America/Maceio
+      JAVA_OPTS: -Duser.timezone=America/Maceio
+    depends_on:
+      gestaopro-db:
+        condition: service_healthy
+
+  gestaopro-db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: gestaopro-db
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: oracle
+      APP_USER: sergipetec
+      APP_USER_PASSWORD: sergipetec
+      ORACLE_CHARACTERSET: AL32UTF8
+    volumes:
+      - sergipetec-data:/opt/oracle/oradata
+      - ./backend/db-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  sergipetec-data:
