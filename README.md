@@ -183,9 +183,6 @@ Decisões:
 
 ## Parte 4 — Execução via Docker
 A aplicação foi embutida no docker para uma solução profissional e testes simplificados.
-
-Perfeito! Aqui está uma versão resumida, focando apenas na instalação do Docker e Docker Compose para Windows, Mac e Linux:
-
 ---
 
 ## Parte 4 — Execução via Docker
