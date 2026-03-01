@@ -182,7 +182,9 @@ Decisões:
 ---
 
 ## Parte 4 — Execução via Docker
+
 A aplicação foi embutida no docker para uma solução profissional e testes simplificados.
+
 ---
 
 ## Parte 4 — Execução via Docker
