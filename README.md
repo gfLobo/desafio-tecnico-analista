@@ -185,10 +185,6 @@ Decisões:
 
 A aplicação foi embutida no docker para uma solução profissional e testes simplificados.
 
----
-
-## Parte 4 — Execução via Docker
-
 
 **Pré-requisitos**
 
@@ -200,9 +196,6 @@ A aplicação foi embutida no docker para uma solução profissional e testes si
 docker --version
 docker-compose --version
 ```
-
----
-
 
 Containers utilizados:
 
